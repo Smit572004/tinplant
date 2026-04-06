@@ -3,7 +3,7 @@ import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { MapPin, Phone, Mail, Send, Clock, MessageCircle, Fax } from "lucide-react";
+import { MapPin, Phone, Mail, Send, Clock, MessageCircle, Printer } from "lucide-react";
 
 const ContactPage = () => {
   const { ref, isVisible } = useScrollAnimation(0.05);
