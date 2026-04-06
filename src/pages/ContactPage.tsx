@@ -43,7 +43,7 @@ const ContactPage = () => {
               {[
                 { icon: MapPin, label: "Address", value: "Magdeburger Landstr. 33\n39164 Wanzleben-Börde\nSachsen-Anhalt, Germany" },
                 { icon: Phone, label: "Phone", value: "+49 39209 69 69 0" },
-                { icon: Fax, label: "Fax", value: "+49 39209 69 69 19" },
+                { icon: Printer, label: "Fax", value: "+49 39209 69 69 19" },
                 { icon: MessageCircle, label: "WhatsApp", value: "+49 157 87930211" },
                 { icon: Mail, label: "Email", value: "info@tinplant-gmbh.de" },
                 { icon: Clock, label: "Office Hours", value: "Monday – Friday\n08:00 – 17:00 CET" },
