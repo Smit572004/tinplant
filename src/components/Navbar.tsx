@@ -2,20 +2,24 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useLanguage } from "@/i18n/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Technology", href: "/technology" },
-  { label: "Services", href: "/services" },
-  { label: "Research", href: "/research" },
-  { label: "Contact", href: "/contact" },
+  { key: "nav.home", href: "/" },
+  { key: "nav.about", href: "/about" },
+  { key: "nav.technology", href: "/technology" },
+  { key: "nav.services", href: "/services" },
+  { key: "nav.research", href: "/research" },
+  { key: "nav.gallery", href: "/gallery" },
+  { key: "nav.contact", href: "/contact" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 50);
@@ -55,20 +59,24 @@ const Navbar = () => {
                 location.pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-primary"
               }`}
             >
-              {link.label}
+              {t(link.key)}
             </Link>
           ))}
+          <LanguageSwitcher />
           <Link
             to="/contact"
             className="px-5 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-[var(--glow-green)] transition-all duration-300"
           >
-            Get in Touch
+            {t("nav.getInTouch")}
           </Link>
         </div>
 
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden text-foreground">
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-3 lg:hidden">
+          <LanguageSwitcher />
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-foreground">
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -82,7 +90,7 @@ const Navbar = () => {
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => (
                 <Link key={link.href} to={link.href} className="text-foreground font-medium text-lg hover:text-primary transition-colors">
-                  {link.label}
+                  {t(link.key)}
                 </Link>
               ))}
             </div>
