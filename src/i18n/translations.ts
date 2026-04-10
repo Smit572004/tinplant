@@ -8,6 +8,7 @@ export const translations = {
     technology: { en: "Technology", de: "Technologie" },
     services: { en: "Services", de: "Leistungen" },
     research: { en: "Research", de: "Forschung" },
+    offers: { en: "Offers", de: "Angebote" },
     gallery: { en: "Gallery", de: "Galerie" },
     contact: { en: "Contact", de: "Kontakt" },
     getInTouch: { en: "Get in Touch", de: "Kontakt aufnehmen" },
