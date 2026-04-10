@@ -2,61 +2,42 @@ import { motion } from "framer-motion";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useLanguage } from "@/i18n/LanguageContext";
 import researchImg from "@/assets/research-field.jpg";
 import techLabImg from "@/assets/technology-lab.jpg";
 import coldChainImg from "@/assets/cold-chain.jpg";
 import { BookOpen, Globe, FlaskConical, FileText, Users, TreePine } from "lucide-react";
 
-const publications = [
-  {
-    title: "British Columbia Reference System Report",
-    date: "January 2026",
-    desc: "Comprehensive analysis of BC's container seedling production as a reference system for German forestry. Covers the complete value chain from seed selection to field establishment.",
-    authors: "Claus Hoelk, with review by Dr. Steven C. Grossnickle & David Swain",
-  },
-  {
-    title: "Container vs. Bare-Root Seedling Comparison",
-    desc: "Detailed comparison of containerized and bare-root seedling performance on dry, fresh, and moist sites using RGP and REL-based survival models.",
-    date: "2025",
-    authors: "TinPlant Research Division",
-  },
-  {
-    title: "European Larch Blackout Experiment",
-    desc: "Internal trial comparing photoperiod manipulation (blackout treatment) effects on bud set timing, plug firmness, and root biomass accumulation in Larix decidua.",
-    date: "Autumn 2025",
-    authors: "TinPlant Biotechnik",
-  },
-];
-
-const experts = [
-  {
-    name: "Claus Hoelk",
-    title: "Managing Director, Ing. Agr.",
-    desc: "Author and lead researcher. Decades of experience in greenhouse production and forestry plant propagation.",
-  },
-  {
-    name: "Dr. Steven C. Grossnickle",
-    title: "Forest Seedling Ecophysiologist",
-    desc: "Principal of NurseryToForest Solutions, BC, Canada. ~50 years of forestry experience. Author of seminal works on seedling ecophysiology.",
-  },
-  {
-    name: "David Swain",
-    title: "Former Director of Crop Production",
-    desc: "Co-founder of PRT Growing Services Ltd., Victoria, BC, Canada. Contributed to production of approximately 7 billion container forest seedlings.",
-  },
-];
-
 const ResearchPage = () => {
   const { ref: pubRef, isVisible: pubVisible } = useScrollAnimation();
   const { ref: expertRef, isVisible: expertVisible } = useScrollAnimation();
   const { ref: bcRef, isVisible: bcVisible } = useScrollAnimation();
+  const { t } = useLanguage();
+
+  const publications = [
+    { title: t("researchPage.pub1Title"), date: "January 2026", desc: t("researchPage.pub1Desc"), authors: "Claus Hoelk, with review by Dr. Steven C. Grossnickle & David Swain" },
+    { title: t("researchPage.pub2Title"), desc: t("researchPage.pub2Desc"), date: "2025", authors: "TinPlant Research Division" },
+    { title: t("researchPage.pub3Title"), desc: t("researchPage.pub3Desc"), date: "Autumn 2025", authors: "TinPlant Biotechnik" },
+  ];
+
+  const experts = [
+    { name: t("researchPage.expert1Name"), title: t("researchPage.expert1Title"), desc: t("researchPage.expert1Desc") },
+    { name: t("researchPage.expert2Name"), title: t("researchPage.expert2Title"), desc: t("researchPage.expert2Desc") },
+    { name: t("researchPage.expert3Name"), title: t("researchPage.expert3Title"), desc: t("researchPage.expert3Desc") },
+  ];
+
+  const refCards = [
+    { icon: Globe, title: t("researchPage.ref1Title"), desc: t("researchPage.ref1Desc"), img: researchImg },
+    { icon: FlaskConical, title: t("researchPage.ref2Title"), desc: t("researchPage.ref2Desc"), img: techLabImg },
+    { icon: TreePine, title: t("researchPage.ref3Title"), desc: t("researchPage.ref3Desc"), img: coldChainImg },
+  ];
 
   return (
     <PageLayout>
       <PageHero
-        title="Research & Scientific Foundation"
-        subtitle="Knowledge Base"
-        description="Our work is grounded in decades of ecophysiological research. We bridge the gap between British Columbia's proven forestry science and German practice."
+        title={t("pageHero.researchTitle")}
+        subtitle={t("pageHero.researchSubtitle")}
+        description={t("pageHero.researchDesc")}
         backgroundImage={researchImg}
       />
 
@@ -68,39 +49,17 @@ const ResearchPage = () => {
             animate={bcVisible ? { opacity: 1, y: 0 } : {}}
             className="text-center mb-16"
           >
-            <span className="text-primary text-sm font-body tracking-widest uppercase">Reference System</span>
+            <span className="text-primary text-sm font-body tracking-widest uppercase">{t("researchPage.refLabel")}</span>
             <h2 className="font-display text-3xl md:text-5xl font-bold mt-3 mb-4">
-              British Columbia: <span className="text-gradient">The Standard</span>
+              {t("researchPage.refTitle1")} <span className="text-gradient">{t("researchPage.refTitle2")}</span>
             </h2>
-            <p className="text-muted-foreground max-w-3xl mx-auto font-body">
-              British Columbia plants approximately 300 million seedlings annually, with over 80% being container
-              seedlings in the 80-125ml volume range — the proven cost-benefit optimum.
-            </p>
+            <p className="text-muted-foreground max-w-3xl mx-auto font-body">{t("researchPage.refDesc")}</p>
           </motion.div>
 
           <div className="grid lg:grid-cols-3 gap-6">
-            {[
-              {
-                icon: Globe,
-                title: "300M+ Annual Seedlings",
-                desc: "BC's industrial-scale container seedling program has been the global standard for decades, proving that small plugs work even on harsh clearcuts.",
-                img: researchImg,
-              },
-              {
-                icon: FlaskConical,
-                title: "Evidence-Based Transfer",
-                desc: "Our report systematically evaluates BC's process chain — from culture management to frost chain logistics — for applicability to German conditions.",
-                img: techLabImg,
-              },
-              {
-                icon: TreePine,
-                title: "Process Discipline",
-                desc: "Without process discipline, a small root ball is a failure risk. With the A-E model, it becomes the most efficient tool against drought stress.",
-                img: coldChainImg,
-              },
-            ].map((item, i) => (
+            {refCards.map((item, i) => (
               <motion.div
-                key={item.title}
+                key={i}
                 initial={{ opacity: 0, y: 40 }}
                 animate={bcVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.15 * i }}
@@ -130,14 +89,14 @@ const ResearchPage = () => {
             className="text-center mb-16"
           >
             <h2 className="font-display text-3xl md:text-5xl font-bold">
-              <span className="text-gradient">Publications</span> & Reports
+              <span className="text-gradient">{t("researchPage.pubTitle1")}</span> {t("researchPage.pubTitle2")}
             </h2>
           </motion.div>
 
           <div className="space-y-6">
             {publications.map((pub, i) => (
               <motion.div
-                key={pub.title}
+                key={i}
                 initial={{ opacity: 0, x: -40 }}
                 animate={pubVisible ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.15 * i }}
@@ -172,14 +131,14 @@ const ResearchPage = () => {
             className="text-center mb-16"
           >
             <h2 className="font-display text-3xl md:text-5xl font-bold">
-              Expert <span className="text-gradient">Advisory Board</span>
+              {t("researchPage.expertTitle1")} <span className="text-gradient">{t("researchPage.expertTitle2")}</span>
             </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {experts.map((e, i) => (
               <motion.div
-                key={e.name}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 animate={expertVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.15 * i }}
