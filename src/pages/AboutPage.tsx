@@ -2,38 +2,40 @@ import { motion } from "framer-motion";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useLanguage } from "@/i18n/LanguageContext";
 import teamImg from "@/assets/team-photo.jpg";
 import nurseryImg from "@/assets/services-nursery.jpg";
 import { Award, Users, Globe, Target, BookOpen, Handshake } from "lucide-react";
-
-const milestones = [
-  { year: "1992", title: "Founded", desc: "TinPlant Biotechnik established in Klein-Wanzleben, Sachsen-Anhalt" },
-  { year: "2000", title: "Expansion", desc: "Expanded greenhouse capacity for large-scale container seedling production" },
-  { year: "2010", title: "Research Hub", desc: "Established R&D partnership with forestry departments across Germany" },
-  { year: "2020", title: "Innovation", desc: "Pioneered frost chain logistics for container seedlings in Europe" },
-  { year: "2025", title: "BC Transfer", desc: "Published landmark report on British Columbia reforestation transfer" },
-];
-
-const values = [
-  { icon: Target, title: "Precision", desc: "Every seedling is produced with scientific precision and quality control at every stage." },
-  { icon: BookOpen, title: "Research-Driven", desc: "Our methods are grounded in decades of ecophysiological research and field validation." },
-  { icon: Handshake, title: "Partnership", desc: "We work alongside government agencies as trusted partners in reforestation." },
-  { icon: Globe, title: "Global Knowledge", desc: "Integrating best practices from British Columbia and international forestry science." },
-  { icon: Users, title: "Expert Team", desc: "Led by Claus Hoelk with advisory from Dr. Steven C. Grossnickle and David Swain." },
-  { icon: Award, title: "Quality First", desc: "ISO-certified processes meeting all regulatory requirements for government projects." },
-];
 
 const AboutPage = () => {
   const { ref: timelineRef, isVisible: timelineVisible } = useScrollAnimation();
   const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
   const { ref: teamRef, isVisible: teamVisible } = useScrollAnimation();
+  const { t } = useLanguage();
+
+  const milestones = [
+    { year: "1992", title: t("aboutPage.m1992Title"), desc: t("aboutPage.m1992Desc") },
+    { year: "2000", title: t("aboutPage.m2000Title"), desc: t("aboutPage.m2000Desc") },
+    { year: "2010", title: t("aboutPage.m2010Title"), desc: t("aboutPage.m2010Desc") },
+    { year: "2020", title: t("aboutPage.m2020Title"), desc: t("aboutPage.m2020Desc") },
+    { year: "2025", title: t("aboutPage.m2025Title"), desc: t("aboutPage.m2025Desc") },
+  ];
+
+  const values = [
+    { icon: Target, title: t("aboutPage.precision"), desc: t("aboutPage.precisionDesc") },
+    { icon: BookOpen, title: t("aboutPage.researchDriven"), desc: t("aboutPage.researchDrivenDesc") },
+    { icon: Handshake, title: t("aboutPage.partnership"), desc: t("aboutPage.partnershipDesc") },
+    { icon: Globe, title: t("aboutPage.globalKnowledge"), desc: t("aboutPage.globalKnowledgeDesc") },
+    { icon: Users, title: t("aboutPage.expertTeam"), desc: t("aboutPage.expertTeamDesc") },
+    { icon: Award, title: t("aboutPage.qualityFirst"), desc: t("aboutPage.qualityFirstDesc") },
+  ];
 
   return (
     <PageLayout>
       <PageHero
-        title="Pioneering Reforestation Since 1992"
-        subtitle="About TinPlant"
-        description="TinPlant Biotechnik und Pflanzenvermehrung GmbH — at the forefront of plant propagation and forestry research for over three decades."
+        title={t("pageHero.aboutTitle")}
+        subtitle={t("pageHero.aboutSubtitle")}
+        description={t("pageHero.aboutDesc")}
         backgroundImage={nurseryImg}
       />
 
@@ -54,20 +56,10 @@ const AboutPage = () => {
             animate={teamVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Our <span className="text-gradient">Story</span></h2>
-            <p className="text-muted-foreground font-body leading-relaxed mb-4">
-              Founded in 1992 in Klein-Wanzleben, Sachsen-Anhalt, TinPlant has grown from a small plant propagation
-              operation into Germany's leading specialist for container-grown forest seedlings.
-            </p>
-            <p className="text-muted-foreground font-body leading-relaxed mb-4">
-              Under the leadership of Claus Hoelk (Ing. Agr.), we have developed advanced greenhouse production
-              systems that produce high-quality 1+0 container seedlings with superior root growth potential (RGP).
-            </p>
-            <p className="text-muted-foreground font-body leading-relaxed">
-              Our collaboration with world-renowned experts like Dr. Steven C. Grossnickle and David Swain
-              bridges decades of British Columbia forestry expertise with German forestry practice, enabling
-              evidence-based reforestation at scale.
-            </p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">{t("aboutPage.storyTitle")} <span className="text-gradient">{t("aboutPage.storyTitle2")}</span></h2>
+            <p className="text-muted-foreground font-body leading-relaxed mb-4">{t("aboutPage.storyP1")}</p>
+            <p className="text-muted-foreground font-body leading-relaxed mb-4">{t("aboutPage.storyP2")}</p>
+            <p className="text-muted-foreground font-body leading-relaxed">{t("aboutPage.storyP3")}</p>
           </motion.div>
         </div>
       </section>
@@ -76,7 +68,7 @@ const AboutPage = () => {
       <section className="section-padding">
         <div className="glow-line mb-16" />
         <div ref={timelineRef} className="container mx-auto">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-16">Our <span className="text-gradient">Journey</span></h2>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-16">{t("aboutPage.journeyTitle")} <span className="text-gradient">{t("aboutPage.journeyTitle2")}</span></h2>
           <div className="relative">
             <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border hidden md:block" />
             {milestones.map((m, i) => (
@@ -108,11 +100,11 @@ const AboutPage = () => {
       <section className="section-padding">
         <div className="glow-line mb-16" />
         <div ref={valuesRef} className="container mx-auto">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-16">Our <span className="text-gradient">Values</span></h2>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-16">{t("aboutPage.valuesTitle")} <span className="text-gradient">{t("aboutPage.valuesTitle2")}</span></h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {values.map((v, i) => (
               <motion.div
-                key={v.title}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 animate={valuesVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.08 * i, duration: 0.5 }}

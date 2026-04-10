@@ -16,7 +16,7 @@ const LanguageContext = createContext<LanguageContextType>({
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLang] = useState<Language>(() => {
     const saved = localStorage.getItem("tinplant-lang") as Language;
-    return saved === "de" ? "de" : "en";
+    return saved === "en" ? "en" : "de";
   });
 
   const handleSetLang = (newLang: Language) => {
