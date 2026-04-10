@@ -153,6 +153,7 @@ export const translations = {
       en: "We welcome inquiries from government forestry departments, state forest enterprises, and research institutions interested in container seedling solutions.",
       de: "Wir freuen uns über Anfragen von staatlichen Forstbehörden, Landesforstbetrieben und Forschungseinrichtungen, die sich für Containerpflanzen-Lösungen interessieren.",
     },
+    findUs: { en: "Find Us", de: "So finden Sie uns" },
   },
 
   // Footer
