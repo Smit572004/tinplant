@@ -125,6 +125,43 @@ const ContactPage = () => {
               </button>
             </motion.form>
           </div>
+
+          {/* Map Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4 }}
+            className="mt-12"
+          >
+            <h3 className="font-display text-xl font-bold mb-4 flex items-center gap-2">
+              <MapPin className="text-primary" size={22} />
+              {t("contact.findUs")}
+            </h3>
+            <div className="glass rounded-2xl overflow-hidden">
+              <iframe
+                title="TinPlant Location"
+                src="https://www.google.com/maps?q=TINPLANT+Biotechnik+und+Pflanzenvermehrung+GmbH,+Wanzleben-B%C3%B6rde&ll=52.0675243,11.3744741&z=16&output=embed"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className="px-5 py-3 flex items-center justify-between bg-muted/30">
+                <p className="text-sm font-body text-muted-foreground">
+                  Magdeburger Landstr. 33, 39164 Wanzleben-Börde, Sachsen-Anhalt
+                </p>
+                <a
+                  href="https://www.google.com/maps/place/TINPLANT+Biotechnik+und+Pflanzenvermehrung+GmbH/@52.0669878,11.3724041,16z/data=!4m6!3m5!1s0x47a58952ebbd52b3:0x4ad1143cdea23acb!8m2!3d52.0675243!4d11.3744741!16s%2Fg%2F1tdq046n?authuser=0&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-body text-primary hover:underline shrink-0 ml-4"
+                >
+                  {t("contact.findUs")} →
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </PageLayout>
