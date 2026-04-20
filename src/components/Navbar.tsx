@@ -11,6 +11,7 @@ const navLinks = [
   { key: "nav.technology", href: "/technology" },
   { key: "nav.services", href: "/services" },
   { key: "nav.research", href: "/research" },
+  { key: "nav.offers", href: "/offers" },
   { key: "nav.gallery", href: "/gallery" },
   { key: "nav.contact", href: "/contact" },
 ];

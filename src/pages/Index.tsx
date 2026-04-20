@@ -5,12 +5,14 @@ import ServicesSection from "@/components/ServicesSection";
 import ImpactSection from "@/components/ImpactSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import ContactSection from "@/components/ContactSection";
+import OffersSection from "@/components/OffersSection";
 
 const Index = () => (
   <PageLayout>
     <HeroSection />
     <AboutSection />
     <ServicesSection />
+    <OffersSection />
     <ImpactSection />
     <WhyChooseUs />
     <ContactSection />
